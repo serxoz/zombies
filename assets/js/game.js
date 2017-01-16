@@ -65,6 +65,8 @@ function init() {
   var edificios2;
   var edificios;
   var calle;
+  var zombi;
+  var girl;
 
   function create () {
     // game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -73,21 +75,35 @@ function init() {
     edificios = game.add.tileSprite(0, 0, 800, 600, 'edificios');
     calle = game.add.tileSprite(0, 0, 800, 600, 'calle');
 
-    var zombi = game.add.sprite(200, 400, 'zombi');
+    zombi = game.add.sprite(0, 400, 'zombi');
     var walk_zombi = zombi.animations.add('walk');
     zombi.animations.play('walk', 20, true);
 
-    var girl = game.add.sprite(350, 440, 'girl');
+    girl = game.add.sprite(350, 440, 'girl');
     var walk_girl = girl.animations.add('walk');
     girl.animations.play('walk', 15 * multiplicador, true);
+
+    game.physics.arcade.enable([zombi, girl]);
+    zombi.body.enable = true;
+    girl.body.enable = true;
+    girl.body.immovable = true;
+
+    zombi.body.velocity.x = 30;
+
   }
 
   function update () {
-
     //console.log("update");
     nubes.tilePosition.x -= 0.5 * multiplicador;
     edificios2.tilePosition.x -= 1 * multiplicador;
     edificios.tilePosition.x -= 1.5 * multiplicador;
     calle.tilePosition.x -= 2.5 * multiplicador;
+
+    game.physics.arcade.overlap(zombi, girl, collisionCallback);
   }
+}
+
+function collisionCallback (zombi, girl) {
+  console.log("pilloute!");
+  zombi.kill();
 }
