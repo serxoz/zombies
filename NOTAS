@@ -1,0 +1,10 @@
+TODO:
+
+-Ir subindo a velocidade para librarse do zombi en base á puntuación
+  Implementado, pero é necesario un algoritmo que calcule unha curva progresiva de dificultade.
+
+
+-Pantalla de benvida e introducción do nick (escoller sexo para cambiar o sprite?)
+-Pantalla de puntuación
+-Música
+-Animaciós do pj
